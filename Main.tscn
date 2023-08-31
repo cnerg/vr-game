@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RadioactiveRod.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://fonts/Montserrat-Medium.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+font_data = ExtResource( 4 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7432, 0, 0 )
+
+[node name="RadioactiveRod" parent="." groups=["rods"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.771, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.551194, 0.834377, 0, -0.834377, 0.551194, 0.0895562, 6.06915, 11.8562 )
+
+[node name="UserInterface" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="UserInterface"]
+margin_right = 244.0
+margin_bottom = 41.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Radiation:"
+
+[node name="ColorRect" type="ColorRect" parent="UserInterface"]
+show_behind_parent = true
+margin_right = 263.0
+margin_bottom = 91.0
+
+[node name="RadioactiveRod2" parent="." groups=["rods"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.442, 0, -8.31481 )

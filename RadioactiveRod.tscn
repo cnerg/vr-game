@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://RadioactiveRod.gd" type="Script" id=1]
+
+[sub_resource type="CylinderShape" id=1]
+height = 1.0
+radius = 0.5
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0, 1, 0.109804, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0, 0.227451, 1, 1 )
+
+[node name="RadioactiveRod" type="StaticBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 19, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="GreenRod" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 19, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../CollisionShape")
+material/0 = SubResource( 3 )
+
+[node name="X_Axis" type="MeshInstance" parent="."]
+transform = Transform( 19, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 5 )
+skeleton = NodePath("../CollisionShape")
+
+[node name="Z_Axis" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 19, 0, 0, 0 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../X_Axis")
+material/0 = SubResource( 7 )
