@@ -1,12 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://RadioactiveRod.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/RadioactiveRod.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://fonts/Montserrat-Medium.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 21
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Node"]
@@ -15,7 +14,7 @@ script = ExtResource( 3 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7432, 0, 0 )
 
-[node name="RadioactiveRod" parent="." groups=["rods"] instance=ExtResource( 2 )]
+[node name="RadioactiveRod" parent="." groups=["sources"] instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.771, 0, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -37,5 +36,5 @@ show_behind_parent = true
 margin_right = 263.0
 margin_bottom = 91.0
 
-[node name="RadioactiveRod2" parent="." groups=["rods"] instance=ExtResource( 2 )]
+[node name="RadioactiveRod2" parent="." groups=["sources"] instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.442, 0, -8.31481 )
