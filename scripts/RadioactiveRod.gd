@@ -40,9 +40,10 @@ func get_radiation(x, y, z):
 
 	var index = -1
 	# check if we are in the voxel map
-	if x >= 0 and x <= max_index_x and y >= 0 and y <= max_index_y and z >= 0 \
-		and z <= max_index_z:
-		index = (y * int(pow(max_index_y, 2))) + (z * max_index_z) + x
+	if x >= 0 and x <= max_index_x and \
+	        y >= 0 and y <= max_index_y and \
+	        z >= 0 and z <= max_index_z:
+		index = (y * max_index_y * max_index_y) + (z * max_index_z) + x
 	var value = 0
 	var voxel_position = Vector3.ZERO
 	# only access the array for voxel info if we are in the voxel map
