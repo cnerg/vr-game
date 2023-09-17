@@ -25,6 +25,8 @@ func _unhandled_input(event):
 		# 		which would be rotating the camera up or down. 
 		#		changing rotation_degrees.y means rotating around the y-axis,
 		#		which would be rotating the camera left or right
+		# note: event is mouse's motion. Thus, if event.relative.x changes, the 
+		# 		mouse has moved left or right. 
 		
 		# rotate the camera left or right
 		rotation_degrees.y -= event.relative.x * mouse_sensitivity
