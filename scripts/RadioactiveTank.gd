@@ -67,23 +67,13 @@ func _ready():
 	# calculate max total index for radiation_map
 	max_index = radiation_map.size()
 	
-	print("done loading tank\n")
-	print(str(radiation_map[0]) + "\n")
-	print("max index: " + str(max_index))
-	print("max index x: " + str(max_index_x))
-	print("max index y: " + str(max_index_y))
-	print("max index z: " + str(max_index_z))
-	
 # returns the radiation value and the voxel at the input position
 func get_radiation(x, y, z):
 	# get the x_index based on input x
 	var x_index = 0
 	var rel_x = x - translation.x # position relative to this tank
 	while x_index < bounds_x.size() and rel_x >= bounds_x[x_index]:
-		#print("hey")
 		x_index = x_index + 1
-	
-	#print(str(bounds_x[0]) + "," + str(bounds_x[1]))	
 	
 	# get the y_index based on input y
 	var y_index = 0
