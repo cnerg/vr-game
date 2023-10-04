@@ -20,7 +20,9 @@ var max_index = 0
 # index of the last voxel queried from getRadiation()
 var prev_index = -1
 
-
+# Used to get the x,y,z boundaries of the voxels in the radiation map
+# scale is the units of the boundaries. (Ex. if boundaries are in cm, scale 
+# 	would be 1/100)
 func get_bounds(csv_line, scale):
 	var bounds = []
 	for i in range(0, csv_line.size()):
@@ -41,7 +43,7 @@ func _ready():
 	bounds_y = get_bounds(csv_file.get_csv_line(), scale)
 	bounds_z = get_bounds(csv_file.get_csv_line(), scale)	
 		
-	# calculate max x,y,z indices
+	# calculate max x,y,z indices 
 	# (-1) there's one extra bound compared to number of spaces
 	max_index_x = bounds_x.size() - 1
 	max_index_y = bounds_y.size() - 1
@@ -79,15 +81,15 @@ func binary_search(array, value):
 	var upper = array.size() - 1
 	var center = 0
 	
-	# if the input value is lower than the smallest value in the array and 
+	# if the input value is lower than the smallest value in the array or 
 	# larger than the biggest value in the array, it's not in the array
 	if value < array[lower] or value > array[upper]:
 		return -1
 		
 	while lower < upper:
 		center = (lower + upper) / 2
-		# if lower and upper are right next to each other and values between them,
-		# return the lower index
+		# if lower and upper are right next to each other and value is between 
+		# them, return the lower index
 		if lower + 1 == upper:
 			if value >= array[lower] and value < array[upper]:
 				return lower
@@ -112,7 +114,8 @@ func get_radiation(x, y, z):
 	var x_index = binary_search(bounds_x, x - translation.x)
 	var y_index = binary_search(bounds_y, y - translation.y)
 	var z_index = binary_search(bounds_z, z - translation.z)
-	# return early if any indices are -1
+	
+	# return early if any indices are -1 (indicates player is not in radiation map)
 	if x_index == -1 or y_index == -1 or z_index == -1:
 		$CurrentVoxel.visible = false
 		return [value, centroid]	
@@ -128,9 +131,7 @@ func get_radiation(x, y, z):
 	# update the voxel mesh if we are in a different voxel
 	if index != prev_index:
 		# set mesh's position to voxel's centroid 
-		$CurrentVoxel.translation.x = centroid.x
-		$CurrentVoxel.translation.y = centroid.y
-		$CurrentVoxel.translation.z = centroid.z
+		$CurrentVoxel.translation = centroid
 		
 		# set size of mesh
 		$CurrentVoxel.scale.x = bounds_x[x_index + 1] - bounds_x[x_index]
