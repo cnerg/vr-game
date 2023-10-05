@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/RadioactiveRod.gd" type="Script" id=1]
 
@@ -27,6 +27,13 @@ size = Vector3( 1, 1, 1 )
 [sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0, 0.227451, 1, 1 )
 
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+albedo_color = Color( 0.815686, 0.0431373, 0.0431373, 0.619608 )
+
 [node name="RadioactiveRod" type="StaticBody"]
 script = ExtResource( 1 )
 
@@ -42,11 +49,18 @@ material/0 = SubResource( 3 )
 
 [node name="X_Axis" type="MeshInstance" parent="."]
 transform = Transform( 19, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visible = false
 mesh = SubResource( 5 )
 skeleton = NodePath("../CollisionShape")
 
 [node name="Z_Axis" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 19, 0, 0, 0 )
+visible = false
 mesh = SubResource( 6 )
 skeleton = NodePath("../X_Axis")
 material/0 = SubResource( 7 )
+
+[node name="CurrentVoxel" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.74868, 0, 0 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
