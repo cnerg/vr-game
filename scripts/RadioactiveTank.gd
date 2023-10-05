@@ -54,13 +54,15 @@ func _ready():
 		var csv_line = csv_file.get_csv_line()
 		var voxel = []
 		var voxel_centroid = Vector3.ZERO
-		# first 3 values are x,y,z of centroid in cm, so multiply by scale
-		voxel_centroid.x = float(csv_line[0]) * scale
-		voxel_centroid.y = float(csv_line[1]) * scale
-		voxel_centroid.z = float(csv_line[2]) * scale
-		for i in range(3, csv_line.size()):
-			voxel.append(float(csv_line[i]))
-		radiation_map.append(voxel)
+		if csv_line.size() == 5:
+			# first 3 values are x,y,z of centroid in cm, so multiply by scale
+			voxel_centroid.x = float(csv_line[0]) * scale
+			voxel_centroid.y = float(csv_line[1]) * scale
+			voxel_centroid.z = float(csv_line[2]) * scale
+			voxel.append(voxel_centroid)
+			for i in range(3, csv_line.size()):
+				voxel.append(float(csv_line[i]))
+			radiation_map.append(voxel)
 	
 	csv_file.close()
 	
