@@ -12,15 +12,28 @@ func _ready():
 
 func _physics_process(delta):
 	# zoom the camera in or out based on the scroll wheel
-	if Input.is_action_just_released("scroll_up"):
+	if Input.is_action_just_released("scroll_up") and spring_length > 0:
 		spring_length -= scroll_speed * delta
-	if Input.is_action_just_released("scroll_down"):
+		# make geiger counter move in opposite direction so it appears stationary
+		$Camera/GeigerCounter.translation.z += scroll_speed * delta
+	if Input.is_action_just_released("scroll_down") and spring_length < 7:
 		spring_length += scroll_speed * delta
-	spring_length = clamp(spring_length, 0, 12)
+		# make geiger counter move in opposite direction so it appears stationary
+		$Camera/GeigerCounter.translation.z -= scroll_speed * delta
+	spring_length = clamp(spring_length, 0, 7)
+	
+	# if the player is fully zoomed in (1st person mode), move mouse to center of screen and
+	# lock it there
+	if (spring_length == 0) :
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else :
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _unhandled_input(event):
-	# move the camera if the RMB is held and the mouse is moving
-	if event is InputEventMouseMotion and Input.is_action_pressed("right_mouse_button"):
+	# move the camera if the mouse is moving and either the RMB is held or the player is
+	# fully zoomed in (1st person mode)
+	if event is InputEventMouseMotion and (Input.is_action_pressed("right_mouse_button") \
+			or spring_length == 0):
 		# note: changing rotation_degrees.x means rotating around the x-axis, 
 		# 		which would be rotating the camera up or down. 
 		#		changing rotation_degrees.y means rotating around the y-axis,
@@ -35,4 +48,4 @@ func _unhandled_input(event):
 		# rotate the camera up or down
 		rotation_degrees.x -= event.relative.y * mouse_sensitivity
 		rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 90.0)
-	
+		
