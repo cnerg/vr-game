@@ -3,24 +3,25 @@ extends SpringArm
 
 var mouse_sensitivity = 0.5
 var scroll_speed = 40
+const MAX_SPRING_LENGTH = 7;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_as_toplevel(true)
-	spring_length = 7
+	spring_length = MAX_SPRING_LENGTH
 
 func _physics_process(delta):
-	# zoom the camera in or out based on the scroll wheel
+	# calculate the absolute zoom amount based on whether we scroll in or out
+	var zoom = 0;
 	if Input.is_action_just_released("scroll_up") and spring_length > 0:
-		spring_length -= scroll_speed * delta
-		# make geiger counter move in opposite direction so it appears stationary
-		$Camera/GeigerCounter.translation.z += scroll_speed * delta
-	if Input.is_action_just_released("scroll_down") and spring_length < 7:
-		spring_length += scroll_speed * delta
-		# make geiger counter move in opposite direction so it appears stationary
-		$Camera/GeigerCounter.translation.z -= scroll_speed * delta
-	spring_length = clamp(spring_length, 0, 7)
+		zoom = -1 * scroll_speed * delta 	# scroll up is zooming in
+	elif Input.is_action_just_released("scroll_down") and spring_length < MAX_SPRING_LENGTH:
+		zoom = scroll_speed * delta 		# scroll down is zooming out
+		
+	spring_length = clamp(spring_length + zoom, 0, MAX_SPRING_LENGTH)
+	# make geiger counter move in opposite direction so it appears stationary
+	$Camera/GeigerCounter.translation.z -= zoom
 	
 	# if the player is fully zoomed in (1st person mode), move mouse to center of screen and
 	# lock it there

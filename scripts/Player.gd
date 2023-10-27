@@ -35,9 +35,7 @@ func _physics_process(delta):
 			var look_direction = Vector2(direction.z, direction.x)
 			rotation.y = look_direction.angle()
 	
-	velocity.x = direction.x * speed
-	velocity.y = direction.y * speed
-	velocity.z = direction.z * speed
+	velocity = direction * speed
 	
 	velocity = move_and_slide(velocity, Vector3.UP)
 	
