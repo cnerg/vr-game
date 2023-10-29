@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/RadioactiveRod.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://fonts/Montserrat-Medium.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://scenes/RadioactiveTank.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/RadioactiveRoom.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -37,5 +37,5 @@ show_behind_parent = true
 margin_right = 263.0
 margin_bottom = 91.0
 
-[node name="RadioactiveTank" parent="." groups=["sources"] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0623, -1.65223, -27.3441 )
+[node name="RadioactiveRoom" parent="." groups=["sources"] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0891, 0, -22.197 )

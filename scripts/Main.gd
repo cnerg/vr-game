@@ -9,7 +9,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var player_pos = $Player.translation
+	var player_pos = $Player/CameraJoint/Camera/GeigerCounter.global_transform.origin
 	
 	var voxel_text = ""
 	var total_radiation = 0
@@ -25,7 +25,4 @@ func _process(delta):
 	# set the label's text with total radiation and voxel positions
 	$UserInterface/Label.text = "Radiation: %s" % total_radiation
 	$UserInterface/Label.text += voxel_text
-	
-	
-	
 	
