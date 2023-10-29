@@ -59,35 +59,28 @@ func initialize(csv_file_name, y_is_up_IN, units_IN):
 	max_index_y = bounds_y.size() - 1
 	max_index_z = bounds_z.size() - 1
 	
+	# default y and z indices, where y = 1, z = 2
+	var up_index = 1
+	var forward_index = 2
+	# swap them if z is up 
+	if !y_is_up:
+		up_index = 2
+		forward_index = 1
+	
 	# get voxel data
-	if y_is_up:
-		while !csv_file.eof_reached(): 
-			var csv_line = csv_file.get_csv_line()
-			var voxel = []
-			var voxel_centroid = Vector3.ZERO
-			if csv_line.size() == 5:
-				# first 3 values are x,y,z of centroid in cm, so multiply by units
-				voxel_centroid.x = float(csv_line[0]) * units
-				voxel_centroid.y = float(csv_line[1]) * units
-				voxel_centroid.z = float(csv_line[2]) * units
-				voxel.append(voxel_centroid)
-				for i in range(3, csv_line.size()):
-					voxel.append(float(csv_line[i]))
-				radiation_map.append(voxel)
-	else:
-		while !csv_file.eof_reached(): 
-			var csv_line = csv_file.get_csv_line()
-			var voxel = []
-			var voxel_centroid = Vector3.ZERO
-			if csv_line.size() == 5:
-				# first 3 values are x,y,z of centroid in cm, so multiply by units
-				voxel_centroid.x = float(csv_line[0]) * units
-				voxel_centroid.z = float(csv_line[1]) * units
-				voxel_centroid.y = float(csv_line[2]) * units
-				voxel.append(voxel_centroid)
-				for i in range(3, csv_line.size()):
-					voxel.append(float(csv_line[i]))
-				radiation_map.append(voxel)
+	while !csv_file.eof_reached(): 
+		var csv_line = csv_file.get_csv_line()
+		var voxel = []
+		var voxel_centroid = Vector3.ZERO
+		if csv_line.size() == 5:
+			# first 3 values are x,y,z of centroid in cm, so multiply by units
+			voxel_centroid.x = float(csv_line[0]) * units
+			voxel_centroid.y = float(csv_line[up_index]) * units
+			voxel_centroid.z = float(csv_line[forward_index]) * units
+			voxel.append(voxel_centroid)
+			for i in range(3, csv_line.size()):
+				voxel.append(float(csv_line[i]))
+			radiation_map.append(voxel)
 	
 	csv_file.close()
 	

@@ -12,17 +12,17 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_back"):
-		direction.z += 1
+		direction += Vector3.BACK
 	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
+		direction += Vector3.FORWARD
 	if Input.is_action_pressed("move_right"):
-		direction.x += 1
+		direction += Vector3.RIGHT
 	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
+		direction += Vector3.LEFT
 	if Input.is_action_pressed("move_up"):
-		direction.y += 1
+		direction += Vector3.UP
 	if Input.is_action_pressed("move_down"):
-		direction.y -= 1
+		direction += Vector3.DOWN
 	
 	# change rotation of the player based on movement
 	if direction != Vector3.ZERO:
