@@ -4,12 +4,18 @@ extends SpringArm
 var mouse_sensitivity = 0.5
 var scroll_speed = 40
 const MAX_SPRING_LENGTH = 7;
+const INITIAL_SPRING_LENGTH = 3;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_as_toplevel(true)
-	spring_length = MAX_SPRING_LENGTH
+	spring_length = 0
+	# GeigerCounter is in correct initial position, but if we want the camera
+	# to start as zoomed out we must subtract that zoom from the GeigerCounter to 
+	# make sure it stays in the same place
+	spring_length += INITIAL_SPRING_LENGTH
+	$Camera/GeigerCounter.translation.z -= INITIAL_SPRING_LENGTH
 
 func _physics_process(delta):
 	# calculate the absolute zoom amount based on whether we scroll in or out

@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/RadioactiveRod.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=3]
-[ext_resource path="res://fonts/Montserrat-Medium.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/RadioactiveRoom.tscn" type="PackedScene" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 4 )
+[ext_resource path="res://scenes/TabScreen.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -15,27 +11,10 @@ script = ExtResource( 3 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6444, 1.2296, -19.5018 )
 
-[node name="RadioactiveRod" parent="." groups=["sources"] instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.771, 0, 0 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.551194, 0.834377, 0, -0.834377, 0.551194, 0.0895562, 6.06915, 11.8562 )
 
-[node name="UserInterface" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Label" type="Label" parent="UserInterface"]
-margin_right = 244.0
-margin_bottom = 41.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "Radiation:"
-
-[node name="ColorRect" type="ColorRect" parent="UserInterface"]
-show_behind_parent = true
-margin_right = 263.0
-margin_bottom = 91.0
-
 [node name="RadioactiveRoom" parent="." groups=["sources"] instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0891, 0, -22.197 )
+
+[node name="TabScreen" parent="." instance=ExtResource( 6 )]

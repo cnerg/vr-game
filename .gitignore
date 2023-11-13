@@ -16,3 +16,8 @@ mono_crash.*.json
 
 # ignore .import files for assets
 *.import
+
+# ignore potentially large filetypes
+*.csv
+*.obj
+*.ogg
