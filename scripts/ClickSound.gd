@@ -11,6 +11,8 @@ const TIMEOUT_RANGE = TIMEOUT_MAX - TIMEOUT_MIN
 const RAND_MIN = 0.0 # min time randomly added to timeout
 const RAND_MAX = 0.5 # max time randomly added to timeout
 
+const SOUND_START = 0.3 # when the click sound plays in the .ogg file
+
 var radiation_present = false # whether or not to play click sounds
 
 
@@ -41,6 +43,6 @@ func set_click_timer_timeout(radiation_value):
 # play the click sound on Timer's timeout
 func _on_ClickTimer_timeout():
 	if radiation_present:
-		play(0.3)
+		play(SOUND_START)
 	else:
 		stop()
