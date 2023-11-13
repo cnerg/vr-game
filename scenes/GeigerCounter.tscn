@@ -88,6 +88,5 @@ stream = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="ClickTimer" type="Timer" parent="ClickSound"]
-one_shot = true
 
 [connection signal="timeout" from="ClickSound/ClickTimer" to="ClickSound" method="_on_ClickTimer_timeout"]

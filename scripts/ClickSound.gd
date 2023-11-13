@@ -40,9 +40,7 @@ func set_click_timer_timeout(radiation_value):
 
 # play the click sound on Timer's timeout
 func _on_ClickTimer_timeout():
-	print($ClickTimer.wait_time)
 	if radiation_present:
 		play(0.3)
 	else:
 		stop()
-	$ClickTimer.start()
