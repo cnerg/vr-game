@@ -28,7 +28,7 @@ func _process(delta):
 		# increment index
 		index += 1
 		
-	accumulated_radiation += total_radiation
+	accumulated_radiation += total_radiation * delta
 	
 	# set the label's text with total radiation and voxel positions
 	$TabScreen/RadiationText.text = "Accumulated Radiation: %s\n" % accumulated_radiation
