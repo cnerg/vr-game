@@ -86,7 +86,3 @@ valign = 1
 [node name="ClickSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 4 )
 script = ExtResource( 5 )
-
-[node name="ClickTimer" type="Timer" parent="ClickSound"]
-
-[connection signal="timeout" from="ClickSound/ClickTimer" to="ClickSound" method="_on_ClickTimer_timeout"]

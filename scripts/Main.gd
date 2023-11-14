@@ -39,7 +39,7 @@ func _process(delta):
 	$Player.set_GeigerCounter_value(total_radiation)
 	
 	# set timeout on ClickTimer for the click sound
-	$Player.GC_click_sound.set_click_timer_timeout(total_radiation)
+	$Player.GC_click_sound.set_radiation(total_radiation)
 	
 	# toggle whether current voxels in the MCNPMeshes are shown if v is pressed.
 	if Input.is_action_just_pressed("toggle_debug"):
