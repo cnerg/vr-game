@@ -10,13 +10,6 @@ var radiation = 0
 
 	
 func _process(delta):
-	# don't play sound if it's below min threshold
-	if radiation < RADIATION_MIN:
-		return
-	# play sound if it's above max threshold
-	elif radiation > RADIATION_MAX:
-		play(SOUND_START)
-	
 	# the more radiation there is, the more likely a sound will be played
 	var random = rand_range(RADIATION_MIN, RADIATION_MAX)
 	if random < radiation:
