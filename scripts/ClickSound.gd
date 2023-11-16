@@ -2,11 +2,10 @@ extends AudioStreamPlayer3D
 
 const RADIATION_MIN = 0.000001 # radiation value that will cause no clicking
 const RADIATION_MAX = 0.1 # radiation value that will cause the most clicking
-const RADIATION_RANGE = RADIATION_MAX - RADIATION_MIN
 
 const SOUND_START = 0.3 # when the click sound plays in the .ogg file
 
-var radiation = 0
+var radiation = 0 # total radiation at Geiger Counter's location
 
 	
 func _process(delta):
