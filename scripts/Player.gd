@@ -4,6 +4,8 @@ extends KinematicBody
 export var speed = 2
 var velocity = Vector3.ZERO
 
+onready var GC_click_sound = $CameraJoint/Camera/GeigerCounter/ClickSound
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -41,4 +43,7 @@ func _physics_process(delta):
 	
 	# move the camera with the player
 	$CameraJoint.translation = translation
+	
+func set_GeigerCounter_value(value):
+	$CameraJoint/Camera/GeigerCounter/Sprite3D2/GeigerViewport/Label.text = "%.7f" % value
 	
