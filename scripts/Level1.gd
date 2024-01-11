@@ -89,7 +89,7 @@ func _process(delta):
 		complete_level()
 
 
-func complete_level():
+func complete_level():	
 	# remove PauseScreen to prevent player from pressing "esc" to open it
 	$PauseScreen.queue_free()
 	# prevent TabScreen from being opened
@@ -101,12 +101,18 @@ func complete_level():
 	# move objectives to a better position
 	objectives.rect_position = RadiationReceived.rect_position
 	objectives.rect_position.y += RadiationReceived.rect_size.y + 20
+	# set the total radiation received
+	LvlCompleteScreen.set_RadiationReceived(accumulated_radiation)
 	
-	# unpause and show mouse
-	Global.make_game_playable()
+	# pause the game
+	get_tree().paused = true
+	# let player move mouse
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	# show the screen
 	LvlCompleteScreen.show()
+	
+	
 
 func _on_EndZone_body_entered(body):
 	if body == Player:

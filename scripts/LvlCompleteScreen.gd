@@ -29,3 +29,6 @@ func show():
 	visible = true
 	$CanvasLayer.visible = true
 	$AnimationPlayer.play("FadeIn")
+	
+func set_RadiationReceived(value):
+	$RadiationReceived/Number.text = "%f" % value
