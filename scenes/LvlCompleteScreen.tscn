@@ -1,0 +1,177 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/LvlCompleteScreen.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.12549, 0.152941, 0.211765, 1 )
+
+[sub_resource type="Theme" id=3]
+Panel/styles/panel = SubResource( 2 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "FadeIn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.517633, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 70
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=5]
+HBoxContainer/constants/separation = 91
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 46
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=14]
+default_font = SubResource( 13 )
+Button/colors/font_color_hover = Color( 0.631373, 0.631373, 0.631373, 1 )
+Button/colors/font_color_pressed = Color( 0.388235, 0.388235, 0.388235, 1 )
+Button/styles/hover = SubResource( 12 )
+
+[sub_resource type="Theme" id=7]
+HBoxContainer/constants/separation = 63
+
+[sub_resource type="DynamicFont" id=8]
+size = 37
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 37
+font_data = ExtResource( 2 )
+
+[node name="LvlCompleteScreen" type="Panel"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 3 )
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeIn = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="Title" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 1024.0
+margin_bottom = 111.0
+custom_fonts/font = SubResource( 4 )
+text = "Level Complete"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -437.0
+margin_top = -120.0
+margin_right = 435.0
+margin_bottom = -43.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LevelSelectButton" type="Button" parent="Buttons"]
+margin_right = 260.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 260, 0 )
+theme = SubResource( 14 )
+text = "Level Select"
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+margin_left = 351.0
+margin_right = 521.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 170, 0 )
+theme = SubResource( 14 )
+text = "Quit"
+
+[node name="ContinueButton" type="Button" parent="Buttons"]
+margin_left = 612.0
+margin_right = 872.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 260, 0 )
+theme = SubResource( 14 )
+text = "Continue"
+
+[node name="RadiationReceived" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -439.5
+margin_top = 100.0
+margin_right = 439.5
+margin_bottom = 157.0
+theme = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="RadiationReceived"]
+margin_right = 316.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = SubResource( 8 )
+text = "Radiation Received:"
+
+[node name="Number" type="Label" parent="RadiationReceived"]
+margin_left = 379.0
+margin_right = 879.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 500, 0 )
+size_flags_stretch_ratio = 2.0
+custom_fonts/font = SubResource( 9 )
+text = "0.1112321"
+autowrap = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_top = 90.0
+margin_right = 1020.0
+margin_bottom = 490.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Buttons/ContinueButton" to="." method="_on_ContinueButton_pressed"]

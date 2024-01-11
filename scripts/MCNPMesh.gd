@@ -26,6 +26,9 @@ var y_is_up = true
 # bool for whether to show the current voxel mesh
 var show_voxel = false
 
+# paths to nodes to improve performance
+onready var CurrentVoxel = $CurrentVoxel
+
 # Used to get the x,y,z boundaries of the voxels in the radiation map
 # units is the units of the boundaries. (Ex. if boundaries are in cm, units 
 # 	would be 1/100)
@@ -91,7 +94,7 @@ func initialize(csv_file_name, y_is_up_IN, units_IN):
 	max_index = radiation_map.size()
 	
 	# hide the current voxel mesh on startup
-	$CurrentVoxel.visible = show_voxel
+	CurrentVoxel.visible = show_voxel
 
 
 # returns the index of the largest value in the array that is still smaller 
@@ -137,7 +140,7 @@ func get_radiation(x, y, z):
 	
 	# return early if any indices are -1 (indicates player is not in radiation map)
 	if x_index == -1 or y_index == -1 or z_index == -1:
-		$CurrentVoxel.visible = false
+		CurrentVoxel.visible = false
 		return [value, centroid]	
 
 	# calculate index of voxel that the player is in
@@ -160,18 +163,18 @@ func get_radiation(x, y, z):
 	# only update and show the voxel if we want it shown
 	if index != prev_index and show_voxel:
 		# set mesh's position to voxel's centroid 
-		$CurrentVoxel.translation = centroid
+		CurrentVoxel.translation = centroid
 		
 		# set size of mesh
-		$CurrentVoxel.scale.x = bounds_x[x_index + 1] - bounds_x[x_index]
-		$CurrentVoxel.scale.y = bounds_y[y_index + 1] - bounds_y[y_index]
-		$CurrentVoxel.scale.z = bounds_z[z_index + 1] - bounds_z[z_index]
+		CurrentVoxel.scale.x = bounds_x[x_index + 1] - bounds_x[x_index]
+		CurrentVoxel.scale.y = bounds_y[y_index + 1] - bounds_y[y_index]
+		CurrentVoxel.scale.z = bounds_z[z_index + 1] - bounds_z[z_index]
 		
 		# update prev_index to latest index queried
 		prev_index = index
 		
 		# show the mesh
-		$CurrentVoxel.visible = true
+		CurrentVoxel.visible = true
 		
 	# return an array with the radiation value and the voxel position
 	return [value, centroid]
@@ -179,4 +182,4 @@ func get_radiation(x, y, z):
 # toggles whether the current voxel mesh is shown or not
 func toggle_show_voxel():
 	show_voxel = !show_voxel
-	$CurrentVoxel.visible = show_voxel
+	CurrentVoxel.visible = show_voxel
