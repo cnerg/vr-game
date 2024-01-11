@@ -2,7 +2,6 @@ extends Node
 
 var sources # all the radioactive sources in the scene
 var accumulated_radiation # total radiation accumulated over time
-var half_camera_fov # half the FOV of the player's camera
 
 # bools for objectives
 onready var saw_cylinder = false # whether the player has seen the cylinder
@@ -33,7 +32,6 @@ func _ready():
 	$InstObj1.visible = false
 	# hide the CompLvlText prompt when player isn't in EndZone
 	CompLvlText.visible = false
-	half_camera_fov = PlayerCamera.fov / 2.0
 	# set the next level
 	LvlCompleteScreen.next_level = 1 # TODO change this to 2
 		
@@ -76,55 +74,39 @@ func _process(delta):
 			source.toggle_show_voxel()
 	
 	if !saw_cylinder:
-		check_cylinder_objective()
-		
-	# show LvlCompleteScreen if the player presses "f" in the EndZone
-	if CompLvlText.visible and Input.is_action_pressed("interact") and !lvl_complete:
-		# prevent this from happening more than once
-		lvl_complete = true
-		# remove PauseScreen to prevent player from pressing "esc" to open it
-		$PauseScreen.queue_free()
-		# prevent TabScreen from being opened
-		$TabScreen.lvl_complete = true
-		# reparent Objectives node (getchild, removechild, addchild)
-		var objectives = $InstObj1/VBoxContainer/Objectives1
-		$InstObj1/VBoxContainer.remove_child(objectives)
-		LvlCompleteScreen.add_child(objectives)
-		# move objectives to a better position
-		objectives.rect_position = RadiationReceived.rect_position
-		objectives.rect_position.y += RadiationReceived.rect_size.y + 20
-		
-		# pause the game
-		get_tree().paused = true
-		# let player move mouse (in case he is fully zoomed in)
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-		# show the screen
-		LvlCompleteScreen.show()
-		
-	
-			
-func check_cylinder_objective():
-	# raycast from player's camera to cylinder (and ignore the glass wall)
-	var space = get_viewport().world.direct_space_state
-	var obj_between = space.intersect_ray(PlayerCamera.global_transform.origin, Cylinder.global_transform.origin, [GlassWall])
-	# check if there's nothing between Camera and Cylinder
-	if obj_between and obj_between.collider == Cylinder:
-		# check if the Cylinder is in the Camera's FOV (using dot product and angles)
-		var cam_vector = -1 * PlayerCamera.get_global_transform().basis.z
-		var cam_to_cylnd_vector = Cylinder.global_transform.origin - PlayerCamera.global_transform.origin
-		var dot_product = cam_vector.dot(cam_to_cylnd_vector)
-		var angle = acos(dot_product / (cam_vector.length() * cam_to_cylnd_vector.length()))
-		var angle_deg = rad2deg(angle)
-		# player saw the Cylinder if the Cylinder is in Camera's FOV
-		if angle_deg <= half_camera_fov and angle_deg >= (-1) * half_camera_fov:
+		if Global.camera_sees_object(PlayerCamera, Cylinder, [GlassWall]):
 			# make sure the objective cannot be completed more than once
 			saw_cylinder = true
 			# check off the objective
 			SeeCylinderObj.pressed = true
 			# show a notification for the objective that was completed
 			$ObjNotif.add_notification(SeeCylinderObj.text)
-			
+		
+	# show LvlCompleteScreen if the player presses "f" in the EndZone
+	if CompLvlText.visible and Input.is_action_pressed("interact") and !lvl_complete:
+		# prevent this from happening more than once
+		lvl_complete = true
+		complete_level()
+
+
+func complete_level():
+	# remove PauseScreen to prevent player from pressing "esc" to open it
+	$PauseScreen.queue_free()
+	# prevent TabScreen from being opened
+	$TabScreen.lvl_complete = true
+	# reparent Objectives node as child of LvlCompleteScreen
+	var objectives = $InstObj1/VBoxContainer/Objectives1
+	$InstObj1/VBoxContainer.remove_child(objectives)
+	LvlCompleteScreen.add_child(objectives)
+	# move objectives to a better position
+	objectives.rect_position = RadiationReceived.rect_position
+	objectives.rect_position.y += RadiationReceived.rect_size.y + 20
+	
+	# unpause and show mouse
+	Global.make_game_playable()
+	
+	# show the screen
+	LvlCompleteScreen.show()
 
 func _on_EndZone_body_entered(body):
 	if body == Player:

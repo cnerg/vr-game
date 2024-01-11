@@ -28,13 +28,14 @@ func load_scene(next_scene):
 	
 	# load next scene using poll()
 	# poll() needs to be in a loop because it loads data in chunks
+	var loader_stage_mult = 100.0 / loader.get_stage_count()
 	while true: 
 		var status = loader.poll()
 		# a chunk of data was loaded
 		if status == OK:
 			# update progress bar according to amount of data loaded
 			var progress_bar = loading_scene_instance.get_node("./CanvasLayer2/ProgressBar")
-			progress_bar.value = float(loader.get_stage()) / loader.get_stage_count() * 100
+			progress_bar.value = float(loader.get_stage()) * loader_stage_mult
 		
 		# finished loading next scene	
 		elif status == ERR_FILE_EOF:
@@ -80,3 +81,23 @@ func make_game_playable():
 	get_tree().paused = false
 	# let player move mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+# raycasts from the camera to the object to see if there are no objects between them
+# ignore: array of objects to ignore in the raycast
+# returns true if there are no objects between them, false otherwise
+func camera_sees_object(camera, object, ignore):
+	# get fov of the camera
+	var half_camera_fov = camera.fov / 2.0
+	# raycast from camera to object
+	var space = get_viewport().world.direct_space_state
+	var obj_between = space.intersect_ray(camera.global_transform.origin, object.global_transform.origin, ignore)
+	# check if there's nothing between camera and object
+	if obj_between and obj_between.collider == object:
+		# check if the object is in the camera's FOV (using dot product and angles)
+		var cam_vector = -1 * camera.get_global_transform().basis.z
+		var cam_to_obj_vector = object.global_transform.origin - camera.global_transform.origin
+		var dot_product = cam_vector.dot(cam_to_obj_vector)
+		var angle = acos(dot_product / (cam_vector.length() * cam_to_obj_vector.length()))
+		var angle_deg = rad2deg(angle)
+		# camera saw the object if the object is in Camera's FOV
+		return (angle_deg <= half_camera_fov and angle_deg >= (-1) * half_camera_fov)
