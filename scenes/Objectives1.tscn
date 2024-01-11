@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://textures/Checkedbox.png" type="Texture" id=2]
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://textures/Uncheckedbox.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=7]
+size = 37
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 6 )
+CheckBox/colors/font_color_pressed = Color( 0, 1, 0.109804, 1 )
+CheckBox/icons/checked = ExtResource( 2 )
+CheckBox/icons/unchecked = ExtResource( 4 )
+
+[node name="Objectives1" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( -326, -82 )
+
+[node name="Title" type="Label" parent="."]
+margin_right = 230.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 230, 130 )
+custom_fonts/font = SubResource( 7 )
+text = "Objectives:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 234.0
+margin_right = 721.0
+margin_bottom = 130.0
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+margin_right = 487.0
+margin_bottom = 63.0
+theme = SubResource( 8 )
+text = "Reach the End Zone"
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer"]
+margin_top = 67.0
+margin_right = 487.0
+margin_bottom = 130.0
+theme = SubResource( 8 )
+text = "See the Radioactive Cylinder"

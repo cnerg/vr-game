@@ -6,7 +6,6 @@ const RADIATION_MAX = 0.1 # radiation value that will cause the most clicking
 const SOUND_START = 0.3 # when the click sound plays in the .ogg file
 
 var radiation = 0 # total radiation at Geiger Counter's location
-
 	
 func _process(delta):
 	# the more radiation there is, the more likely a sound will be played

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 37
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 37
+font_data = ExtResource( 2 )
+
+[node name="Instructions1" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( -419, -74 )
+
+[node name="Title" type="Label" parent="."]
+margin_right = 230.0
+margin_bottom = 117.0
+rect_min_size = Vector2( 230, 117 )
+custom_fonts/font = SubResource( 1 )
+text = "Instructions:"
+
+[node name="Description" type="Label" parent="."]
+margin_left = 234.0
+margin_right = 734.0
+margin_bottom = 117.0
+rect_min_size = Vector2( 500, 0 )
+size_flags_stretch_ratio = 2.0
+custom_fonts/font = SubResource( 2 )
+text = "Navigate the facility and receive as little radiation as possible."
+autowrap = true

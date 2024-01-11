@@ -1,0 +1,623 @@
+[gd_scene load_steps=55 format=2]
+
+[ext_resource path="res://fonts/TitilliumWeb/TitilliumWeb-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://text_theme.tres" type="Theme" id=2]
+[ext_resource path="res://textures/Wood2/Wood058_1K-JPG_Roughness.jpg" type="Texture" id=3]
+[ext_resource path="res://textures/TiledFloor/Tiles051_1K-JPG_Roughness.jpg" type="Texture" id=4]
+[ext_resource path="res://scripts/MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://textures/Wood2/Wood058_1K-JPG_NormalGL.jpg" type="Texture" id=6]
+[ext_resource path="res://textures/TiledFloor/Tiles051_1K-JPG_NormalGL.jpg" type="Texture" id=7]
+[ext_resource path="res://textures/Wood2/Wood058_1K-JPG_Displacement.jpg" type="Texture" id=8]
+[ext_resource path="res://textures/Wood2/Wood058_1K-JPG_Color.jpg" type="Texture" id=9]
+[ext_resource path="res://textures/CeilingTile/OfficeCeiling001_1K-JPG_Displacement.jpg" type="Texture" id=10]
+[ext_resource path="res://textures/WhitePlaster/Plaster001_1K-JPG_Color.jpg" type="Texture" id=11]
+[ext_resource path="res://textures/WhitePlaster/Plaster001_1K-JPG_Roughness.jpg" type="Texture" id=12]
+[ext_resource path="res://textures/TiledFloor/Tiles051_1K-JPG_Color.jpg" type="Texture" id=13]
+[ext_resource path="res://textures/WhitePlaster/Plaster001_1K-JPG_Displacement.jpg" type="Texture" id=14]
+[ext_resource path="res://textures/CeilingTile/OfficeCeiling001_1K-JPG_Color.jpg" type="Texture" id=15]
+[ext_resource path="res://textures/WhitePlaster/Plaster001_1K-JPG_NormalGL.jpg" type="Texture" id=16]
+[ext_resource path="res://textures/CeilingTile/OfficeCeiling001_1K-JPG_Roughness.jpg" type="Texture" id=17]
+[ext_resource path="res://textures/TiledFloor/Tiles051_1K-JPG_Displacement.jpg" type="Texture" id=18]
+[ext_resource path="res://textures/CeilingTile/OfficeCeiling001_1K-JPG_NormalGL.jpg" type="Texture" id=19]
+[ext_resource path="res://models/TwoRoomModel.obj" type="ArrayMesh" id=20]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.439216, 0.439216, 0.439216, 0 )
+
+[sub_resource type="Theme" id=3]
+Panel/styles/panel = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+outline_size = 7
+outline_color = Color( 0.419608, 0.027451, 0.027451, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=35]
+default_font = SubResource( 1 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Move0"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3.6496, 0.985948, 4.24741 ), Vector3( 3.86477, 0.974733, 1.59468 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.12379, 48.7857, 0.162747 ), Vector3( -0.142681, 83.5207, 0.312021 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Move1"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2, 1.806, -8.219 ), Vector3( 0.39, 1.6, -8.219 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 165.073, 0 ), Vector3( 0, 200, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Move2"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.769132, 1.39385, 8.10579 ), Vector3( 6.50013, 1.39385, 8.10579 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.142681, -12.7953, 0.312021 ), Vector3( -0.142681, 38.3017, 0.312021 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "Move3"
+length = 22.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 22 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.28626, 1.55487, -7.91189 ), Vector3( -1.5, 1.684, -3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 22 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.157587, -96.4564, 0.247683 ), Vector3( 0, -175, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 3.45791, 1.80574, -8.21942 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 165.073, 0 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 14, 1 )
+uv1_offset = Vector3( 0.338, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 8, 1 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 3.5, 1 )
+uv1_offset = Vector3( 0, 0.03, 0 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_texture = ExtResource( 15 )
+roughness_texture = ExtResource( 17 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 19 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 10 )
+uv1_scale = Vector3( 5, 7.5, 1 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_texture = ExtResource( 13 )
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 7 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 18 )
+uv1_scale = Vector3( 3.5, 5, 1 )
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 3.5, 1 )
+uv1_offset = Vector3( 0, 0.362, 0 )
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+albedo_color = Color( 0.294118, 0.294118, 0.294118, 0.564706 )
+roughness = 0.0
+
+[sub_resource type="SpatialMaterial" id=15]
+flags_transparent = true
+albedo_color = Color( 0, 1, 0.0666667, 1 )
+metallic = 0.5
+roughness = 0.0
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 15, 1 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 6, 1 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 0.75, 1 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 5.6, 1 )
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 16.8, 1 )
+uv1_offset = Vector3( 0.371, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 25.9, 1 )
+uv1_offset = Vector3( 0.25, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 25.9, 1 )
+uv1_offset = Vector3( 0.572, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 0.7, 1 )
+uv1_offset = Vector3( 0.572, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 5.6, 1 )
+uv1_offset = Vector3( 0.572, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 9, 1 )
+
+[sub_resource type="SpatialMaterial" id=26]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 18, 1 )
+
+[sub_resource type="SpatialMaterial" id=27]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 27, 1 )
+
+[sub_resource type="SpatialMaterial" id=28]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 0.75, 1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 15, 1 )
+
+[sub_resource type="SpatialMaterial" id=30]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 6, 1 )
+
+[sub_resource type="SpatialMaterial" id=31]
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 6 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 8 )
+uv1_scale = Vector3( 0.35, 8, 1 )
+
+[sub_resource type="SpatialMaterial" id=32]
+albedo_texture = ExtResource( 11 )
+roughness_texture = ExtResource( 12 )
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource( 16 )
+depth_enabled = true
+depth_scale = -0.01
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 14 )
+uv1_scale = Vector3( 4, 0.7, 1 )
+uv1_offset = Vector3( 0.106, 0, 0 )
+
+[node name="MainMenu" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 3 )
+script = ExtResource( 5 )
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -475.0
+margin_top = 30.0
+margin_right = 475.0
+margin_bottom = 138.0
+theme = SubResource( 35 )
+text = "Radiation Detection Simulator"
+align = 1
+valign = 1
+
+[node name="StartButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -90.0
+margin_right = 125.0
+margin_bottom = 14.0
+theme = ExtResource( 2 )
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="."]
+anchor_left = -0.000976563
+anchor_top = 0.0333333
+anchor_right = -0.000976563
+anchor_bottom = 0.0333333
+margin_left = 388.0
+margin_top = 355.0
+margin_right = 636.0
+margin_bottom = 459.0
+theme = ExtResource( 2 )
+text = "Quit"
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.966255, 0, 0.257588, 0, 1, 0, -0.257588, 0, -0.966255, 3.45791, 1.80574, -8.21942 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Move0 = SubResource( 6 )
+anims/Move1 = SubResource( 4 )
+anims/Move2 = SubResource( 7 )
+anims/Move3 = SubResource( 33 )
+anims/RESET = SubResource( 5 )
+
+[node name="RadioactiveRoomMesh" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.5, -0.5, -5.5 )
+mesh = ExtResource( 20 )
+material/0 = SubResource( 8 )
+material/1 = SubResource( 8 )
+material/2 = SubResource( 9 )
+material/3 = SubResource( 10 )
+material/4 = SubResource( 11 )
+material/5 = SubResource( 12 )
+material/6 = SubResource( 13 )
+material/7 = SubResource( 14 )
+material/8 = SubResource( 15 )
+material/9 = SubResource( 16 )
+material/10 = SubResource( 16 )
+material/11 = SubResource( 17 )
+material/12 = SubResource( 18 )
+material/13 = SubResource( 17 )
+material/14 = SubResource( 18 )
+material/15 = SubResource( 17 )
+material/16 = SubResource( 17 )
+material/17 = SubResource( 18 )
+material/18 = SubResource( 19 )
+material/19 = SubResource( 20 )
+material/20 = SubResource( 21 )
+material/21 = SubResource( 22 )
+material/22 = SubResource( 22 )
+material/23 = SubResource( 23 )
+material/24 = SubResource( 24 )
+material/25 = SubResource( 25 )
+material/26 = SubResource( 26 )
+material/27 = SubResource( 26 )
+material/28 = SubResource( 27 )
+material/29 = SubResource( 27 )
+material/30 = SubResource( 28 )
+material/31 = SubResource( 29 )
+material/32 = SubResource( 30 )
+material/33 = SubResource( 31 )
+material/34 = SubResource( 32 )
+material/35 = SubResource( 23 )
+material/36 = SubResource( 23 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61853, 2.34849, 3.19597 )
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61853, 2.34849, -2.54027 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.551194, 0.834377, 0, -0.834377, 0.551194, 0.0895562, 6.06915, 11.8562 )
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
